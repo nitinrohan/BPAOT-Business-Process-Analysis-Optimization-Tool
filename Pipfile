@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+sqlalchemy = "*"
+openpyxl = "*"
+jupyter = "*"
+requests = "*"
+beautifulsoup4 = "*"
+pytest = "*"
+pandas = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.13"

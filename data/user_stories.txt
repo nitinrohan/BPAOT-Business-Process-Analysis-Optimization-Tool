@@ -1,0 +1,2 @@
+As a user, I want to track leave request status because employees are unsure of their request’s progress. Solution: Add a real-time status tracker.
+As a user, I want to digitize approval process because managers approve via email, which is hard to track. Solution: Build a centralized approval dashboard.
