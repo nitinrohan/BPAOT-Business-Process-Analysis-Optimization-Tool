@@ -1,0 +1,2 @@
+# BPAOT-Business-Process-Analysis-Optimization-Tool
+A Streamlit-based web application designed to streamline the process of capturing, managing, and analyzing business requirements. BPAOT supports full CRUD operations on requirement records, automated user story generation, and data export features. Built for business analysts and IT teams to improve process understanding and foster collaboration.
