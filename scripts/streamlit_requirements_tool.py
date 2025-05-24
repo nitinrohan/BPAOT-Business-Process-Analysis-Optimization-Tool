@@ -153,7 +153,18 @@ def main():
 
         conn.close()
 
+    tab6 = st.tabs(["📸 Post to Instagram"])[0]
 
+    with tab6:
+        st.subheader("Post Word Frequency Chart to Instagram")
+
+        if st.button("📸 Post Now"):
+            with st.spinner("Uploading to Instagram..."):
+                result = os.system("python scripts/post_to_instagram.py")
+            if result == 0:
+                st.success("✅ Post published to Instagram!")
+            else:
+                st.error("❌ Failed to post to Instagram. Check credentials or network.")
 
 
 
