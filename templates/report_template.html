@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BPAOT Report</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 30px;
+      }
+      h1 {
+        color: #3b7dd8;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+      }
+      img {
+        margin-top: 20px;
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>BPAOT - Business Requirements Report</h1>
+    <p><strong>Total Entries:</strong> {{ total }}</p>
+
+    <h2>Top 10 Frequent Words in Requirements</h2>
+    <img src="{{ chart_path }}" alt="Word Frequency Chart" />
+
+    <h2>Raw Requirements Data</h2>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Requirement</th>
+        <th>Pain Point</th>
+        <th>Proposed Solution</th>
+      </tr>
+      {% for row in data %}
+      <tr>
+        <td>{{ row.id }}</td>
+        <td>{{ row.requirement }}</td>
+        <td>{{ row.pain_point }}</td>
+        <td>{{ row.proposed_solution }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
