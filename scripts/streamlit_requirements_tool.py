@@ -2,6 +2,9 @@ import io  # Add to the top of your file if not already
 import streamlit as st
 import pandas as pd
 import os
+import sqlite3
+import matplotlib.pyplot as plt
+
 
 FILE_PATH = "/Users/rohanb/BPAOT/data/requirements.xlsx"
 
@@ -112,6 +115,44 @@ def main():
                 file_name="user_stories.txt",
                 mime="text/plain"
             )
+    
+        tab5 = st.tabs(["📊 Insights & SQL"])[0]
+
+    with tab5:
+        st.subheader("📈 SQL Insights & Analytics")
+
+        # Connect to SQLite
+        conn = sqlite3.connect("data/bpaot.db")
+        cursor = conn.cursor()
+
+        # 🔍 Show total records
+        cursor.execute("SELECT COUNT(*) FROM requirements")
+        total = cursor.fetchone()[0]
+        st.metric(label="Total Requirements in Database", value=total)
+
+        # 🔢 Most Common Words in Requirements
+        st.markdown("### 🔤 Most Common Words in Requirements")
+
+        df_db = pd.read_sql("SELECT * FROM requirements", conn)
+        all_words = " ".join(df_db["requirement"].dropna().tolist()).lower().split()
+        freq = pd.Series(all_words).value_counts().head(10)
+
+        fig, ax = plt.subplots()
+        freq.plot(kind='bar', ax=ax)
+        st.pyplot(fig)
+
+        # 💬 Custom SQL Query Tool
+        st.markdown("### 💬 Run Custom SQL Query")
+        user_query = st.text_area("Enter SQL Query (e.g., SELECT * FROM requirements LIMIT 5):")
+        if user_query:
+            try:
+                result_df = pd.read_sql(user_query, conn)
+                st.dataframe(result_df)
+            except Exception as e:
+                st.error(f"⚠️ Error: {e}")
+
+        conn.close()
+
 
 
 
